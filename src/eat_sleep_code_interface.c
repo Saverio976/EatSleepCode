@@ -8,10 +8,11 @@
 #include <SFML/Graphics.h>
 #include <stddef.h>
 #include "constant.h"
-void render_code(sfRenderWindow *, sfFont *, sfText *, char *);
+#include "struct_context.h"
+void render_code(context_t *, char *);
 void master_event_window(sfRenderWindow *, sfEvent *);
-void free_pointer_bg_w(sfTexture *, sfSprite *, sfRenderWindow *);
-void free_pointer_tx_ft(sfFont *, sfText *);
+void free_pointer_bg(sfTexture *, sfSprite *);
+void free_pointer_ctx(context_t *);
 
 sfRenderWindow *create_window(unsigned int w, unsigned int h, char const *t)
 {
@@ -36,31 +37,30 @@ sfSprite *create_background(char const *path, sfTexture **background_texture)
 
 int eat_sleep_code_interface(char *path)
 {
-    sfRenderWindow *window = create_window(1920, 1080, "EatSleepCode");
+    context_t ctx;
     sfTexture *background_texture;
     sfSprite *background;
     sfEvent event;
-    sfFont *font;
-    sfText *text;
 
-    if (!window)
+    ctx.window = create_window(1920, 1080, "EatSleepCode");
+    if (!ctx.window)
         return (84);
     background = create_background(BG_PATH, &background_texture);
     if (!background)
         return (84);
-    font = sfFont_createFromFile(FONT_PATH);
-    if (!font)
+    ctx.font = sfFont_createFromFile(FONT_PATH);
+    if (!ctx.font)
         return (84);
-    text = sfText_create();
-    if (!text)
+    ctx.text = sfText_create();
+    if (!ctx.text)
         return (84);
-    while (sfRenderWindow_isOpen(window)) {
-        master_event_window(window, &event);
-        sfRenderWindow_drawSprite(window, background, NULL);
-        render_code(window, font, text, path);
-        sfRenderWindow_display(window);
+    while (sfRenderWindow_isOpen(ctx.window)) {
+        master_event_window(ctx.window, &event);
+        sfRenderWindow_drawSprite(ctx.window, background, NULL);
+        render_code(&ctx, path);
+        sfRenderWindow_display(ctx.window);
     }
-    free_pointer_tx_ft(font, text);
-    free_pointer_bg_w(background_texture, background, window);
+    free_pointer_ctx(&ctx);
+    free_pointer_bg(background_texture, background);
     return (0);
 }

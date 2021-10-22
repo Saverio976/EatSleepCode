@@ -6,16 +6,17 @@
 */
 
 #include <SFML/Graphics.h>
+#include "struct_context.h"
 
-void free_pointer_bg_w(sfTexture *t, sfSprite *s, sfRenderWindow *w)
+void free_pointer_bg(sfTexture *t, sfSprite *s)
 {
     sfSprite_destroy(s);
     sfTexture_destroy(t);
-    sfRenderWindow_destroy(w);
 }
 
-void free_pointer_tx_ft(sfFont *font, sfText *text)
+void free_pointer_ctx(context_t *ctx)
 {
-    sfFont_destroy(font);
-    sfText_destroy(text);
+    sfFont_destroy(ctx->font);
+    sfText_destroy(ctx->text);
+    sfRenderWindow_destroy(ctx->window);
 }
