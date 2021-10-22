@@ -28,6 +28,8 @@ char *my_strncpy(char *, char const *, int);
 char *my_strstr(char *, char const *);
 char *my_strupcase(char *);
 
+int my_arraylen(char **);
+
 int open_readonly(char *);
 
 #endif //LIBMY_H_INCLUSION_
