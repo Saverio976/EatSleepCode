@@ -31,5 +31,8 @@ char *my_strupcase(char *);
 int my_arraylen(char **);
 
 int open_readonly(char *);
+int file_is_exists(char const *);
+int file_is_readable(char const *);
+int file_is_writable(char const *);
 
 #endif //LIBMY_H_INCLUSION_

@@ -12,13 +12,13 @@
 #include <unistd.h>
 int my_strlen(char const *);
 
-static char const *ERROR_MSGS[] = {": Is a directory\n",
-                            ": Permission denied\n",
-                            ": Not possible to read STREAMS file\n",
-                            ": Loop between files link\n",
-                            ": All file process's file descriptor are used\n",
-                            ": Maximum number of file open\n",
-                            ": File too large\n",
+static char const *ERROR_MSGS[] = {"Is a directory\n",
+                            "Permission denied\n",
+                            "Not possible to read STREAMS file\n",
+                            "Loop between files link\n",
+                            "All file process's file descriptor are used\n",
+                            "Maximum number of file open\n",
+                            "File too large\n",
                             NULL};
 static int const ERROR_SIGNL[] = {EISDIR,
                             EACCES,
