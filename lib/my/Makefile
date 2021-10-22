@@ -6,6 +6,7 @@
 ##
 
 SRC	=	file_is_exists.c	\
+		file_is_file.c	\
 		file_is_readable.c	\
 		file_is_writable.c	\
 		file_openreadonly.c	\
