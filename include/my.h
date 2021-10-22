@@ -6,7 +6,7 @@
 */
 
 #ifndef LIBMY_H_INCLUSION_
-#define LIBMY_H_INCLUSION_
+    #define LIBMY_H_INCLUSION_
 
 int my_putstr(char const *);
 
@@ -30,10 +30,11 @@ char *my_strupcase(char *);
 
 int my_arraylen(char **);
 
-int open_readonly(char *);
+int file_create(char const *);
+int open_readonly(char const *);
 int file_is_exists(char const *);
 int file_is_file(char const *);
 int file_is_readable(char const *);
 int file_is_writable(char const *);
 
-#endif //LIBMY_H_INCLUSION_
+#endif

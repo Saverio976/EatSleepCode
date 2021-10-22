@@ -16,7 +16,7 @@ static void add_to_counter(char c, int *counter)
         (*counter)++;
 }
 
-static int get_number_line(char *path)
+static int get_number_line(char const *path)
 {
     int fd = open_readonly(path);
     int nbyte = 30000;
@@ -57,7 +57,7 @@ static void do_for_loop(char buffer[30000], int nbyte, char **tab)
     tab[index] = NULL;
 }
 
-char **read_text(char *path)
+char **read_text(char const *path)
 {
     int size_y = get_number_line(path);
     int fd;

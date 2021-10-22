@@ -5,11 +5,13 @@
 ## create the lib and move it to ../
 ##
 
-SRC	=	file_is_exists.c	\
+SRC	=	file_create.c	\
+		file_is_exists.c	\
 		file_is_file.c	\
 		file_is_readable.c	\
 		file_is_writable.c	\
 		file_openreadonly.c	\
+		my_putstr.c	\
 		my_strcapitalize.c	\
 		my_strcat.c	\
 		my_strcmp.c	\

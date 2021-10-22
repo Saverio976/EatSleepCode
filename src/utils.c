@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include <unistd.h>
 #include <stddef.h>
 
 static const char *KEYWORDS[] = {"for", "if", "else", "while", "return", NULL};
@@ -61,4 +62,11 @@ int check_if_preprocess(char *cursor)
             ok = my_strlen(PREPROCES[i]);
     }
     return (ok);
+}
+
+int write_file_error(char *file, char *msg)
+{
+    write(2, file, my_strlen(file));
+    write(2, msg, my_strlen(msg));
+    return (84);
 }

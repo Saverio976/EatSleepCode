@@ -1,6 +1,9 @@
 # uncessary folder
 Videos/*
 
+# swap file by EatSleepCode
+.esc.*
+
 # Prerequisites
 *.d
 

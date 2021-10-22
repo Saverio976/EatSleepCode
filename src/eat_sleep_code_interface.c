@@ -10,7 +10,9 @@
 #include <stdlib.h>
 #include "constant.h"
 #include "struct_context.h"
-void render_code(context_t *, char *);
+#include "my.h"
+
+void render_code(context_t *, char const *);
 void master_event_window(context_t *, sfEvent *);
 void free_pointer_bg(sfTexture *, sfSprite *);
 void free_pointer_ctx(context_t *);
@@ -54,7 +56,7 @@ context_t *create_context(unsigned int w, unsigned int h, char const *title,
     return (ctx);
 }
 
-int eat_sleep_code_interface(char *path)
+int eat_sleep_code_interface(char const *swap, char const *path)
 {
     context_t *ctx = create_context(1920, 1080, "EatSleepCode", FONT_PATH);
     sfTexture *background_texture;
@@ -69,9 +71,10 @@ int eat_sleep_code_interface(char *path)
     while (sfRenderWindow_isOpen(ctx->window)) {
         master_event_window(ctx, &event);
         sfRenderWindow_drawSprite(ctx->window, background, NULL);
-        render_code(ctx, path);
+        render_code(ctx, swap);
         sfRenderWindow_display(ctx->window);
     }
+    my_putstr(path);
     free_pointer_ctx(ctx);
     free_pointer_bg(background_texture, background);
     return (0);

@@ -11,7 +11,7 @@
 #include "my.h"
 #include <stddef.h>
 #include <stdlib.h>
-char **read_text(char *);
+char **read_text(char const *);
 char *sanitize_string(char *);
 int check_if_keyword(char *);
 int check_if_type(char *);
@@ -58,12 +58,15 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
     position->x = x_tmp;
 }
 
-static void update_text(context_t *ctx, char *path)
+static void update_text(context_t *ctx, char const *path)
 {
     sfVector2f position = {50, 30};
     char **text_char = read_text(path);
-    int len_max = my_arraylen(text_char);
+    int len_max;
 
+    if (!text_char)
+        return;
+    len_max = my_arraylen(text_char);
     for (int i = ctx->scroll_y; i < len_max; i++) {
         position.y += 20;
         set_auto_color(ctx, text_char[i], &position);
@@ -72,7 +75,7 @@ static void update_text(context_t *ctx, char *path)
     free(text_char);
 }
 
-void render_code(context_t *ctx, char *path)
+void render_code(context_t *ctx, char const *path)
 {
     update_text(ctx, path);
 }

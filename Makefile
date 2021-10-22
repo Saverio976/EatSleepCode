@@ -17,7 +17,8 @@ SRC	=	$(PREFIX)eat_sleep_code.c	\
 		$(PREFIX)read_text.c	\
 		$(PREFIX)utils.c	\
 		$(PREFIX)free_pointer.c	\
-		$(PREFIX)syntax_color.c
+		$(PREFIX)syntax_color.c	\
+		$(PREFIX)file_copy_to.c
 
 OBJ	=	$(SRC:.c=.o)
 

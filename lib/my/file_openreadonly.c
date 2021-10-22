@@ -29,7 +29,7 @@ static int const ERROR_SIGNL[] = {EISDIR,
                             EOVERFLOW,
                             0};
 
-static int write_file_error(char *file, char const *msg)
+static int write_file_error(char const *file, char const *msg)
 {
     char space[] = ": ";
     char newline = '\n';
@@ -41,7 +41,7 @@ static int write_file_error(char *file, char const *msg)
     return (84);
 }
 
-static int itter_on_error(int err, char *file)
+static int itter_on_error(int err, char const *file)
 {
     int i = 0;
 
@@ -52,7 +52,7 @@ static int itter_on_error(int err, char *file)
     return (-84);
 }
 
-int open_readonly(char *file)
+int open_readonly(char const *file)
 {
     int fd;
 
