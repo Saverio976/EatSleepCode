@@ -14,6 +14,7 @@ struct context {
     sfRenderWindow *window;
     sfFont *font;
     sfText *text;
+    int scroll_y;
 };
 typedef struct context context_t;
 

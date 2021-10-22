@@ -67,8 +67,9 @@ static void update_text(context_t *ctx, char *path)
 {
     sfVector2f position = {50, 30};
     char **text_char = read_text(path);
+    int len_max = my_arraylen(text_char);
 
-    for (int i = 0; text_char[i] != NULL; i++) {
+    for (int i = ctx->scroll_y; i < len_max; i++) {
         position.y += 20;
         set_auto_color(ctx, text_char[i], &position);
         free(text_char[i]);

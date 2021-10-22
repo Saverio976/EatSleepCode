@@ -10,7 +10,7 @@
 #include "constant.h"
 #include "struct_context.h"
 void render_code(context_t *, char *);
-void master_event_window(sfRenderWindow *, sfEvent *);
+void master_event_window(context_t *, sfEvent *);
 void free_pointer_bg(sfTexture *, sfSprite *);
 void free_pointer_ctx(context_t *);
 
@@ -37,7 +37,7 @@ sfSprite *create_background(char const *path, sfTexture **background_texture)
 
 int eat_sleep_code_interface(char *path)
 {
-    context_t ctx;
+    context_t ctx = {.scroll_y = 0};
     sfTexture *background_texture;
     sfSprite *background;
     sfEvent event;
@@ -55,7 +55,7 @@ int eat_sleep_code_interface(char *path)
     if (!ctx.text)
         return (84);
     while (sfRenderWindow_isOpen(ctx.window)) {
-        master_event_window(ctx.window, &event);
+        master_event_window(&ctx, &event);
         sfRenderWindow_drawSprite(ctx.window, background, NULL);
         render_code(&ctx, path);
         sfRenderWindow_display(ctx.window);
