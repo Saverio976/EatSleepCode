@@ -15,8 +15,12 @@ char **read_text(char *);
 char *sanitize_string(char *);
 int check_if_keyword(char *);
 int check_if_type(char *);
+int check_if_preprocess(char *);
+int higth_keyword(char *, int, context_t *, sfVector2f *);
+int higth_type(char *, int, context_t *, sfVector2f *);
+int higth_preproces(char *, int, context_t *, sfVector2f *);
 
-static void render_text_color(context_t *ctx, char *txt, sfVector2f *position,
+void render_text_color(context_t *ctx, char *txt, sfVector2f *position,
                                 sfColor color)
 {
     sfText_setString(ctx->text, sanitize_string(txt));
@@ -31,30 +35,21 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
 {
     int is_keyword = 0;
     int is_type = 0;
+    int is_prepro = 0;
     int x_tmp = position->x;
-    char *cut;
     char tab[2] = {0};
 
     for (int i = 0; i < my_strlen(line); i++) {
         is_keyword = check_if_keyword(line + i);
         is_type = check_if_type(line + i);
-        if (is_keyword != 0) {
-            cut = malloc(sizeof(char) * (is_keyword + 1));
-            my_strncpy(cut, line + i, is_keyword);
-            cut[is_keyword] = '\0';
-            position->x += (sfText_getGlobalBounds(ctx->text)).width;
-            render_text_color(ctx, cut, position, KYW_COLOR);
-            free(cut);
-            i += is_keyword - 1;
-        } else if (is_type != 0) {
-            cut = malloc(sizeof(char) * (is_type + 1));
-            my_strncpy(cut, line + i, is_type);
-            cut[is_type] = '\0';
-            position->x += (sfText_getGlobalBounds(ctx->text)).width;
-            render_text_color(ctx, cut, position, TYP_COLOR);
-            free(cut);
-            i += is_type - 1;
-        } else {
+        is_prepro = check_if_preprocess(line + i);
+        if (is_prepro != 0)
+            i += higth_preproces(line + i, is_prepro, ctx, position);
+        else if (is_keyword != 0)
+            i += higth_keyword(line + i, is_keyword, ctx, position);
+        else if (is_type != 0)
+            i += higth_type(line + i, is_type, ctx, position);
+        else {
             tab[0] = line[i];
             position->x += (sfText_getGlobalBounds(ctx->text)).width;
             render_text_color(ctx, tab, position, DFL_COLOR);

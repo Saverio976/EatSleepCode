@@ -11,7 +11,7 @@ static int check_if_digit_or_alpha(char c)
 {
     int ok = 0;
 
-    if ('a' <= c && c <= 'z' || 'A' <= c && c <= 'Z')
+    if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
         ok = 1;
     if ('0' <= c && c <= '9')
         ok = 1;

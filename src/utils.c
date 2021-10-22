@@ -8,10 +8,12 @@
 #include "my.h"
 #include <stddef.h>
 
-static const char *KEYWORDS[] = {"for", "if", "while", "return", NULL};
+static const char *KEYWORDS[] = {"for", "if", "else", "while", "return", NULL};
 static const char *TYPES[] = {"void", "char", "int", "long", 
                                 "unsigned", "struct", "static", 
                                 NULL};
+static const char *PREPROCES[] = {"#define", "#ifdef", "#ifndef", "#include",
+                                    NULL};
 
 char *sanitize_string(char *str)
 {
@@ -31,7 +33,7 @@ int check_if_keyword(char *cursor)
     int ok = 0;
 
     for (int i = 0; !ok && KEYWORDS[i] != NULL; i++) {
-        if (my_strncmp(cursor, KEYWORDS[i], my_strlen(KEYWORDS[i])) == 0)
+        if (my_strncmp(cursor, KEYWORDS[i], my_strlen(KEYWORDS[i]) + 1) == 0)
             ok = my_strlen(KEYWORDS[i]);
     }
     return (ok);
@@ -43,8 +45,20 @@ int check_if_type(char *cursor)
     int ok = 0;
 
     for (int i = 0; !ok && TYPES[i] != NULL; i++) {
-        if (my_strncmp(cursor, TYPES[i], my_strlen(TYPES[i])) == 0)
+        if (my_strncmp(cursor, TYPES[i], my_strlen(TYPES[i]) + 1) == 0)
             ok = my_strlen(TYPES[i]);
+    }
+    return (ok);
+}
+
+// return 0 if it is not a pre-processor-directiv, else, the length of the type;
+int check_if_preprocess(char *cursor)
+{
+    int ok = 0;
+
+    for (int i = 0; !ok && PREPROCES[i] != NULL; i++) {
+        if (my_strncmp(cursor, PREPROCES[i], my_strlen(PREPROCES[i]) + 1) == 0)
+            ok = my_strlen(PREPROCES[i]);
     }
     return (ok);
 }

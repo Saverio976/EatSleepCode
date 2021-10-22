@@ -28,7 +28,6 @@ static int const ERROR_SIGNL[] = {EISDIR,
                             ENFILE,
                             EOVERFLOW,
                             0};
-static int const NUMBER_ERROR = 6;
 
 static int write_file_error(char *file, char const *msg)
 {
@@ -39,6 +38,7 @@ static int write_file_error(char *file, char const *msg)
     write(2, space, my_strlen(space));
     write(2, msg, my_strlen(msg));
     write(2, &newline, 1);
+    return (84);
 }
 
 static int itter_on_error(int err, char *file)

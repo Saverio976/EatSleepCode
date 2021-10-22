@@ -31,6 +31,8 @@ LIB_NAME	=	libmy.a
 
 INCLUDE_NAME	=	my.h
 
+CFLAGS	=	-Wall -Wextra
+
 all:	build
 
 re:	fclean build

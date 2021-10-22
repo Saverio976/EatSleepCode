@@ -15,6 +15,7 @@
     #define BG_PATH "assets/black_bg.png"
     #define KYW_COLOR sfYellow
     #define TYP_COLOR sfGreen
+    #define PRO_COLOR sfMagenta
     #define DFL_COLOR sfWhite
 
 #endif
