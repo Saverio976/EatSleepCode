@@ -10,11 +10,13 @@ and do `make`
 
 # Use case
 
-if you want to read a little portion of text
-if you dont want a IDE with a lot of plugins (there is no plugin)
-if you want a thing to not edit a text (for now)
+if you want to read a little portion of text.
 
-use this programm
+if you dont want a IDE with a lot of plugins (there is no plugin).
+
+if you want a thing to not edit a text (for now).
+
+use this programm.
 
 # License
 
