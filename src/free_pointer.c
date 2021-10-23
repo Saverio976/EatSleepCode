@@ -19,4 +19,5 @@ void free_pointer_ctx(context_t *ctx)
     sfFont_destroy(ctx->font);
     sfText_destroy(ctx->text);
     sfRenderWindow_destroy(ctx->window);
+    free(ctx);
 }
