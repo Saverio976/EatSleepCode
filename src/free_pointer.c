@@ -8,6 +8,7 @@
 #include <SFML/Graphics.h>
 #include "struct_context.h"
 #include <stdlib.h>
+#include <stddef.h>
 
 void free_pointer_bg(sfTexture *t, sfSprite *s)
 {
@@ -19,6 +20,9 @@ void free_pointer_ctx(context_t *ctx)
 {
     sfFont_destroy(ctx->font);
     sfText_destroy(ctx->text);
+    for (int i = 0; ctx->text_file[i] != NULL; i++)
+        free(ctx->text_file[i]);
+    free(ctx->text_file);
     sfRenderWindow_destroy(ctx->window);
     free(ctx);
 }
