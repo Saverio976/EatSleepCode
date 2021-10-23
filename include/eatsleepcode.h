@@ -49,3 +49,5 @@ int check_if_keyword(char *);
 int check_if_type(char *);
 int check_if_preprocess(char *);
 int write_file_error(char *, char *);
+
+#endif
