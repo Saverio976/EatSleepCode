@@ -51,18 +51,37 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
 
 static void put_text_on(context_t *ctx)
 {
-    sfVector2f position = {50, 30};
+    sfVector2f position = {START_TXT_X, START_TXT_Y};
     int len_max;
 
     len_max = my_arraylen(ctx->text_file);
     for (int i = ctx->scroll_y; i < len_max; i++) {
-        position.y += 20;
+        //position.y += SPACE_BETWEEN_LINE;
         set_auto_color(ctx, ctx->text_file[i], &position);
-        position.x = 50;
+        position.x = START_TXT_X;
+        position.y += (sfText_getGlobalBounds(ctx->text)).height + LINE_PADING;
     }
+}
+
+static void put_cursor(context_t *ctx)
+{
+    sfVector2f position = {START_TXT_X, START_TXT_Y};
+    char tab[2] = {0};
+
+    for (int i = 0; i < ctx->cursor_y; i++) {
+        sfText_setString(ctx->text, ctx->text_file[i]);
+        position.y += (sfText_getGlobalBounds(ctx->text)).height;
+    }
+    for (int i = 0; i < ctx->cursor_x; i++) {
+        tab[0] = ctx->text_file[ctx->cursor_y][i];
+        sfText_setString(ctx->text, tab);
+        position.x += (sfText_getGlobalBounds(ctx->text)).width;
+    }
+    render_text_color(ctx, CURSOR_CHAR, &position, CURSOR_COLOR);
 }
 
 void render_code(context_t *ctx)
 {
     put_text_on(ctx);
+    put_cursor(ctx);
 }
