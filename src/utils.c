@@ -14,7 +14,7 @@ static const char *TYPES[] = {"void", "char", "int", "long",
                                 "unsigned", "struct", "static", 
                                 NULL};
 static const char *PREPROCES[] = {"#define", "#ifdef", "#ifndef", "#include",
-                                    NULL};
+                                    "#endif", NULL};
 
 char *sanitize_string(char *str)
 {
