@@ -13,7 +13,7 @@
 
 // src/code_text.c
 void render_text_color(context_t *, char *, sfVector2f *, sfColor);
-void render_code(context_t *, char const *);
+void render_code(context_t *);
 
 // src/eat_sleep_code.c
 int eat_sleep_code(int, char **);
@@ -27,6 +27,7 @@ int eat_sleep_code_interface(char const *, char const *);
 
 // src/file_copy_to.c
 int copy_file_to(char const *, char const *);
+int reset_file_from(char const *, char const *);
 
 // src/free_pointer.c
 void free_pointer_bg(sfTexture *, sfSprite *);
@@ -48,6 +49,11 @@ char *sanitize_string(char *);
 int check_if_keyword(char *);
 int check_if_type(char *);
 int check_if_preprocess(char *);
-int write_file_error(char *, char *);
+int write_file_error(char const *, char *);
+
+// src/update_text.c
+void update_text_unicode(context_t *, sfUint32);
+void save_swap_modif(context_t *);
+void save_text_modif(context_t *);
 
 #endif

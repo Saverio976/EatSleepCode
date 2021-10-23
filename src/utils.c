@@ -64,7 +64,7 @@ int check_if_preprocess(char *cursor)
     return (ok);
 }
 
-int write_file_error(char *file, char *msg)
+int write_file_error(char const *file, char const *msg)
 {
     write(2, file, my_strlen(file));
     write(2, msg, my_strlen(msg));

@@ -19,6 +19,7 @@ sfRenderWindow *create_window(unsigned int w, unsigned int h, char const *t)
     sfRenderWindow *window;
 
     window = sfRenderWindow_create(mode, t, sfResize | sfClose, NULL);
+    sfRenderWindow_setKeyRepeatEnabled(window, sfFalse);
     return (window);
 }
 
@@ -40,6 +41,9 @@ context_t *create_context(unsigned int w, unsigned int h, char const *title,
     context_t *ctx = malloc(sizeof(context_t));
     
     ctx->scroll_y = 0;
+    ctx->scroll_x = 0;
+    ctx->cursor_y = 0;
+    ctx->cursor_x = 0;
     ctx->window = create_window(w, h, title);
     if (!(ctx->window))
         return NULL;
@@ -52,6 +56,19 @@ context_t *create_context(unsigned int w, unsigned int h, char const *title,
     return (ctx);
 }
 
+static void add_to_context(context_t *ctx, char const *swap, char const *path)
+{
+    ctx->path = path;
+    ctx->swap = swap;
+    ctx->text_file = read_text(swap);
+}
+
+static void init_screen_frame(sfRenderWindow *window, sfSprite *bg)
+{
+    sfRenderWindow_clear(window, sfBlack);
+    sfRenderWindow_drawSprite(window, bg, NULL);
+}
+
 int eat_sleep_code_interface(char const *swap, char const *path)
 {
     context_t *ctx = create_context(1920, 1080, "EatSleepCode", FONT_PATH);
@@ -61,16 +78,18 @@ int eat_sleep_code_interface(char const *swap, char const *path)
 
     if (!ctx)
         return (84);
+    add_to_context(ctx, swap, path);
+    if (!(ctx->text_file))
+        return (84);
     background = create_background(BG_PATH, &background_texture);
     if (!background)
         return (84);
     while (sfRenderWindow_isOpen(ctx->window)) {
         master_event_window(ctx, &event);
-        sfRenderWindow_drawSprite(ctx->window, background, NULL);
-        render_code(ctx, swap);
+        init_screen_frame(ctx->window, background);
+        render_code(ctx);
         sfRenderWindow_display(ctx->window);
     }
-    my_putstr(path);
     free_pointer_ctx(ctx);
     free_pointer_bg(background_texture, background);
     return (0);

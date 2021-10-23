@@ -29,7 +29,6 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
     int is_keyword = 0;
     int is_type = 0;
     int is_prepro = 0;
-    int x_tmp = position->x;
     char tab[2] = {0};
 
     for (int i = 0; i < my_strlen(line); i++) {
@@ -48,27 +47,22 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
             render_text_color(ctx, tab, position, DFL_COLOR);
         }
     }
-    position->x = x_tmp;
 }
 
-static void update_text(context_t *ctx, char const *path)
+static void put_text_on(context_t *ctx)
 {
     sfVector2f position = {50, 30};
-    char **text_char = read_text(path);
     int len_max;
 
-    if (!text_char)
-        return;
-    len_max = my_arraylen(text_char);
+    len_max = my_arraylen(ctx->text_file);
     for (int i = ctx->scroll_y; i < len_max; i++) {
         position.y += 20;
-        set_auto_color(ctx, text_char[i], &position);
-        free(text_char[i]);
+        set_auto_color(ctx, ctx->text_file[i], &position);
+        position.x = 50;
     }
-    free(text_char);
 }
 
-void render_code(context_t *ctx, char const *path)
+void render_code(context_t *ctx)
 {
-    update_text(ctx, path);
+    put_text_on(ctx);
 }
