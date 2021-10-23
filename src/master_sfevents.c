@@ -8,7 +8,7 @@
 #include <SFML/Graphics.h>
 #include "struct_context.h"
 
-void iterr_for_event(context_t *ctx, sfEvent *event)
+static void iterr_for_event(context_t *ctx, sfEvent *event)
 {
     if (event->type == sfEvtClosed)
         sfRenderWindow_close(ctx->window);
