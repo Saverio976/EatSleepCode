@@ -11,7 +11,7 @@
 int eat_sleep_code(int ac, char **av)
 {
     int result_code = 0;
-    char swap[100] = ".esc.";
+    char swap[100];
 
     //result_code = check_args(ac, av);
     if (result_code == 84)
@@ -21,7 +21,8 @@ int eat_sleep_code(int ac, char **av)
     else {
         if (!file_is_file(av[1]))
             return write_file_error(av[1], ": Is not a file\n");
-        my_strcat(swap, av[1]);
+        my_strcpy(swap, av[1]);
+        my_strcat(swap, ".esc.");
         if (file_is_exists(av[1]))
             copy_file_to(swap, av[1]);
         else

@@ -2,7 +2,7 @@
 Videos/*
 
 # swap file by EatSleepCode
-.esc.*
+*.esc.
 
 # Prerequisites
 *.d
