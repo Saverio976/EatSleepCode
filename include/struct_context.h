@@ -16,9 +16,11 @@ struct context {
     sfText *text;
     int scroll_y;
     int scroll_x;
-    char **text_file;
     int cursor_x;
     int cursor_y;
+    char **text_file;
+    char const *path;
+    char const *swap;
 };
 typedef struct context context_t;
 
