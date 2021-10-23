@@ -15,6 +15,8 @@ static const keyfunc_t KEYFUNC[] = {{sfKeyEscape, &key_escape},
                                 {sfKeyRight, &key_right},
                                 {sfKeyUp, &key_up},
                                 {sfKeyDown, &key_down},
+                                {sfKeyBack, &key_backspace},
+                                {sfKeyDelete, &key_delete},
                                 {sfKeyDown, NULL}};
 
 int event_close(context_t *ctx, sfEvent *event, int *is_swap_modif)

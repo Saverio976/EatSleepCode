@@ -74,3 +74,40 @@ int key_down(context_t *ctx, int *is_swap_modif, sfEvent *event)
     *is_swap_modif = 0;
     return (1);
 }
+
+int key_backspace(context_t *ctx, int *is_swap_modif, sfEvent *event)
+{
+    int len_x;
+
+    sfRenderWindow_pollEvent(ctx->window, event);
+    if (ctx->cursor_x == 0 && ctx->cursor_y == 0)
+        return (1);
+    len_x = my_strlen(ctx->text_file[ctx->cursor_y - 1]);
+    remove_text_at(ctx);
+    (ctx->cursor_x)--;
+    if (ctx->cursor_x < 0)
+        ctx->cursor_x = len_x;
+    *is_swap_modif = 1;
+    return (1);
+}
+
+int key_delete(context_t *ctx, int *is_swap_modif, sfEvent *event)
+{
+    int len_x = my_strlen(ctx->text_file[ctx->cursor_y]);
+    int len_y = my_arraylen(ctx->text_file);
+
+    sfRenderWindow_pollEvent(ctx->window, event);
+    if (ctx->cursor_x == len_x && ctx->cursor_y == len_y)
+        return (1);
+    (ctx->cursor_x)++;
+    if (ctx->cursor_x == len_x + 1) {
+        ctx->cursor_x = 0;
+        (ctx->cursor_y)++;
+    }
+    remove_text_at(ctx);
+    (ctx->cursor_x)--;
+    if (ctx->cursor_x < 0)
+        ctx->cursor_x = len_x;
+    *is_swap_modif = 1;
+    return (1);
+}

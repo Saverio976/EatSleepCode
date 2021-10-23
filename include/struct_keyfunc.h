@@ -22,5 +22,7 @@ int key_left(context_t *, int *, sfEvent *);
 int key_right(context_t *, int *, sfEvent *);
 int key_up(context_t *, int *, sfEvent *);
 int key_down(context_t *, int *, sfEvent *);
+int key_backspace(context_t *, int *, sfEvent *);
+int key_delete(context_t *, int *, sfEvent *);
 
 #endif

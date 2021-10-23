@@ -34,6 +34,52 @@ void save_swap_modif(context_t *ctx)
     close(fd);
 }
 
+static void remove_line_at(context_t *ctx, int len_last_line)
+{
+    int i;
+    char *new;
+    char **new_text_file;
+
+    new_text_file = malloc(sizeof(char *) * (my_arraylen(ctx->text_file) + 1));
+    len_last_line += my_strlen(ctx->text_file[ctx->cursor_y]);
+    new = malloc(sizeof(char) * (len_last_line + 2));
+    new[0] = '\0';
+    my_strcat(new, ctx->text_file[ctx->cursor_y - 1]);
+    my_strcat(new, ctx->text_file[ctx->cursor_y]);
+    new[len_last_line] = '\0';
+    free(ctx->text_file[ctx->cursor_y - 1]);
+    free(ctx->text_file[ctx->cursor_y]);
+    for (i = 0; i < ctx->cursor_y - 1; i++)
+        new_text_file[i] = ctx->text_file[i];
+    new_text_file[i] = new;
+    for (i = i + 2; ctx->text_file[i] != NULL; i++)
+        new_text_file[i - 1] = ctx->text_file[i];
+    new_text_file[i - 1] = NULL;
+    free(ctx->text_file);
+    ctx->text_file = new_text_file;
+}
+
+void remove_text_at(context_t *ctx)
+{
+    int len = my_strlen(ctx->text_file[ctx->cursor_y]);
+    char *new;
+    int i;
+
+    if (ctx->cursor_x == 0) {
+        remove_line_at(ctx, len);
+        (ctx->cursor_y)--;
+    } else {
+        new = malloc(sizeof(char) * len);
+        for (i = 0; i < ctx->cursor_x - 1; i++)
+            new[i] = ctx->text_file[ctx->cursor_y][i];
+        for (i = i + 1; i < len; i++)
+            new[i - 1] = ctx->text_file[ctx->cursor_y][i];
+        new[i - 1] = '\0';
+        free(ctx->text_file[ctx->cursor_y]);
+        ctx->text_file[ctx->cursor_y] = new;
+    }
+}
+
 void update_text_unicode(context_t *ctx, sfUint32 u)
 {
     int len = my_strlen(ctx->text_file[ctx->cursor_y]) + 2;
