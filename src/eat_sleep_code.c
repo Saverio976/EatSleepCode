@@ -6,10 +6,7 @@
 */
 
 #include "my.h"
-
-int eat_sleep_code_interface(char const *, char const *);
-int write_file_error(char *, char *);
-int copy_file_to(char const *, char const *);
+#include "eatsleepcode.h"
 
 int eat_sleep_code(int ac, char **av)
 {

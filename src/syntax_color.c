@@ -10,7 +10,7 @@
 #include "my.h"
 #include "constant.h"
 #include "struct_context.h"
-void render_text_color(context_t *, char *, sfVector2f *, sfColor);
+#include "eatsleepcode.h"
 
 static char *cut_text(char *cursor, int len)
 {

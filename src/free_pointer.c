@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.h>
 #include "struct_context.h"
+#include <stdlib.h>
 
 void free_pointer_bg(sfTexture *t, sfSprite *s)
 {

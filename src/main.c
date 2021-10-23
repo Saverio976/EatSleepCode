@@ -6,7 +6,7 @@
 */
 
 #include "my.h"
-int eat_sleep_code(int, char **);
+#include "eatsleepcode.h"
 
 int main(int ac, char **av)
 {

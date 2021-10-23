@@ -6,19 +6,12 @@
 */
 
 #include <SFML/Graphics.h>
-#include "constant.h"
-#include "struct_context.h"
-#include "my.h"
 #include <stddef.h>
 #include <stdlib.h>
-char **read_text(char const *);
-char *sanitize_string(char *);
-int check_if_keyword(char *);
-int check_if_type(char *);
-int check_if_preprocess(char *);
-int higth_keyword(char *, int, context_t *, sfVector2f *);
-int higth_type(char *, int, context_t *, sfVector2f *);
-int higth_preproces(char *, int, context_t *, sfVector2f *);
+#include "constant.h"
+#include "struct_context.h"
+#include "eatsleepcode.h"
+#include "my.h"
 
 void render_text_color(context_t *ctx, char *txt, sfVector2f *position,
                                 sfColor color)

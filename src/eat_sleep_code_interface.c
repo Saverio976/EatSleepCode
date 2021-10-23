@@ -11,11 +11,7 @@
 #include "constant.h"
 #include "struct_context.h"
 #include "my.h"
-
-void render_code(context_t *, char const *);
-void master_event_window(context_t *, sfEvent *);
-void free_pointer_bg(sfTexture *, sfSprite *);
-void free_pointer_ctx(context_t *);
+#include "eatsleepcode.h"
 
 sfRenderWindow *create_window(unsigned int w, unsigned int h, char const *t)
 {
