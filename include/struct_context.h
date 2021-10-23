@@ -15,6 +15,10 @@ struct context {
     sfFont *font;
     sfText *text;
     int scroll_y;
+    int scroll_x;
+    char **text_file;
+    int cursor_x;
+    int cursor_y;
 };
 typedef struct context context_t;
 
