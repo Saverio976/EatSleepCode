@@ -17,5 +17,10 @@
     #define TYP_COLOR sfGreen
     #define PRO_COLOR sfMagenta
     #define DFL_COLOR sfWhite
+    #define CURSOR_CHAR "|"
+    #define CURSOR_COLOR sfRed
+    #define START_TXT_X 50
+    #define START_TXT_Y 50
+    #define LINE_PADING 5
 
 #endif
