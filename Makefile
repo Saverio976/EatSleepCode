@@ -12,7 +12,7 @@ MAIN	=	$(PREFIX)main.c
 
 SRC	=	$(PREFIX)eat_sleep_code.c	\
 		$(PREFIX)eat_sleep_code_interface.c	\
-		$(PREFIX)iterr_for_event.c	\
+		$(PREFIX)master_sfevents.c	\
 		$(PREFIX)code_text.c	\
 		$(PREFIX)read_text.c	\
 		$(PREFIX)utils.c	\
