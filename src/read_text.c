@@ -45,9 +45,10 @@ static void do_for_loop(char buffer[30000], int nbyte, char **tab)
         if (buffer[i] != '\n')
             len++;
         else {
-            str = malloc(sizeof(char) * (len + 1));
+            str = malloc(sizeof(char) * (len + 2));
             my_strncpy(str, cursor, len);
-            str[len] = '\0';
+            str[len] = '\n';
+            str[len + 1] = '\0';
             tab[index] = str;
             index++;
             cursor = buffer + i + 1;
