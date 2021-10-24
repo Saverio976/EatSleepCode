@@ -84,7 +84,7 @@ int key_backspace(context_t *ctx, int *is_swap_modif, sfEvent *event)
         return (1);
     len_x = my_strlen(ctx->text_file[ctx->cursor_y]) - 1;
     remove_text_at(ctx);
-    ctx->cursor_x -= 2;
+    ctx->cursor_x -= 1;
     if (ctx->cursor_x < 0)
         ctx->cursor_x = len_x;
     *is_swap_modif = 1;
