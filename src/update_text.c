@@ -29,6 +29,32 @@ void save_swap_modif(context_t *ctx)
     close(fd);
 }
 
+void add_new_line_at(context_t *ctx)
+{
+    int len = my_strlen(ctx->text_file[ctx->cursor_y]) - 1;
+    char *new1 = malloc(sizeof(char) * (ctx->cursor_x + 2));
+    char *new2 = malloc(sizeof(char) * (len - ctx->cursor_x + 2));
+    char **new_text_file;
+    int j;
+
+    my_init_nstr(new1, '\0', ctx->cursor_x + 2);
+    my_strncpy(new1, ctx->text_file[ctx->cursor_y], ctx->cursor_x);
+    new1[ctx->cursor_x] = '\n';
+    my_init_nstr(new2, '\0', len + 1);
+    my_strcpy(new2, ctx->text_file[ctx->cursor_y] + ctx->cursor_x);
+    new_text_file = malloc(sizeof(char *) * (my_arraylen(ctx->text_file) + 2));
+    for (int i = 0; i < ctx->cursor_y; i++)
+        new_text_file[i] = ctx->text_file[i];
+    new_text_file[ctx->cursor_y] = new1;
+    new_text_file[ctx->cursor_y + 1] = new2;
+    for (j = ctx->cursor_y + 2; ctx->text_file[j - 1]; j++)
+        new_text_file[j] = ctx->text_file[j - 1];
+    new_text_file[j] = NULL;
+    free(ctx->text_file[ctx->cursor_y]);
+    free(ctx->text_file);
+    ctx->text_file = new_text_file;
+}
+
 static void remove_line_at(context_t *ctx, int len_last_line)
 {
     int i;

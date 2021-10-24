@@ -56,5 +56,6 @@ void update_text_unicode(context_t *, sfUint32);
 void save_swap_modif(context_t *);
 void save_text_modif(context_t *);
 void remove_text_at(context_t *);
+void add_new_line_at(context_t *);
 
 #endif
