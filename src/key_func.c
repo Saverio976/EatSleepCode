@@ -111,3 +111,13 @@ int key_delete(context_t *ctx, int *is_swap_modif, sfEvent *event)
     *is_swap_modif = 1;
     return (1);
 }
+
+int key_enter(context_t *ctx, int *is_swap_modif, sfEvent *event)
+{
+    sfRenderWindow_pollEvent(ctx->window, event);
+    add_new_line_at(ctx);
+    (ctx->cursor_y)++;
+    ctx->cursor_x = 0;
+    *is_swap_modif = 1;
+    return (1);
+}
