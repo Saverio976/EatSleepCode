@@ -31,7 +31,7 @@ static void set_auto_color(context_t *ctx, char *line, sfVector2f *position)
     int is_prepro = 0;
     char tab[2] = {0};
 
-    for (int i = 0; i < my_strlen(line); i++) {
+    for (int i = 0; i < my_strlen(line) - 1; i++) {
         is_keyword = check_if_keyword(line + i);
         is_type = check_if_type(line + i);
         is_prepro = check_if_preprocess(line + i);
@@ -56,7 +56,6 @@ static void put_text_on(context_t *ctx)
 
     len_max = my_arraylen(ctx->text_file);
     for (int i = ctx->scroll_y; i < len_max; i++) {
-        //position.y += SPACE_BETWEEN_LINE;
         set_auto_color(ctx, ctx->text_file[i], &position);
         position.x = START_TXT_X;
         position.y += (sfText_getGlobalBounds(ctx->text)).height + LINE_PADING;
@@ -70,7 +69,7 @@ static void put_cursor(context_t *ctx)
 
     for (int i = 0; i < ctx->cursor_y; i++) {
         sfText_setString(ctx->text, ctx->text_file[i]);
-        position.y += (sfText_getGlobalBounds(ctx->text)).height;
+        position.y += (sfText_getGlobalBounds(ctx->text)).height / 2;
     }
     for (int i = 0; i < ctx->cursor_x; i++) {
         tab[0] = ctx->text_file[ctx->cursor_y][i];
