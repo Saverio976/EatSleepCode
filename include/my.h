@@ -27,6 +27,7 @@ int my_strncmp(char const *, char const *, int);
 char *my_strncpy(char *, char const *, int);
 char *my_strstr(char *, char const *);
 char *my_strupcase(char *);
+char *my_init_nstr(char *, char, int);
 
 int my_arraylen(char **);
 

@@ -29,7 +29,8 @@ SRC	=	file_create.c	\
 		my_strncpy.c	\
 		my_strstr.c	\
 		my_strupcase.c	\
-		my_arraylen.c
+		my_arraylen.c	\
+		my_init_nstr.c
 
 OBJ	=	$(SRC:.c=.o)
 
