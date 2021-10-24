@@ -1,6 +1,8 @@
 # EatSleepCode
 
-A work in progress for educational purpose. 
+the new useless text editor
+
+A work in progress -for educational purpose-. 
 To help better understanding the CSFML lib.
 
 # Installation
