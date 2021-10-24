@@ -97,7 +97,7 @@ int key_delete(context_t *ctx, int *is_swap_modif, sfEvent *event)
     int len_y = my_arraylen(ctx->text_file);
 
     sfRenderWindow_pollEvent(ctx->window, event);
-    if (ctx->cursor_x == len_x && ctx->cursor_y == len_y)
+    if (ctx->cursor_x == len_x && ctx->cursor_y == len_y - 1)
         return (1);
     (ctx->cursor_x)++;
     if (ctx->cursor_x == len_x + 1) {
