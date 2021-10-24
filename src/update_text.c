@@ -32,12 +32,11 @@ void save_swap_modif(context_t *ctx)
 static void remove_line_at(context_t *ctx, int len_last_line)
 {
     int i;
-    int len = my_strlen(ctx->text_file[ctx->cursor_y]); + len_last_line;
+    int len = my_strlen(ctx->text_file[ctx->cursor_y]) + len_last_line;
     char *new;
     char **new_text_file;
 
     new_text_file = malloc(sizeof(char *) * (my_arraylen(ctx->text_file) + 1));
-    len_last_line += my_strlen(ctx->text_file[ctx->cursor_y]);
     new = malloc(sizeof(char) * (len + 2));
     my_init_nstr(new, '\0', len + 2);
     my_strncat(new, ctx->text_file[ctx->cursor_y - 1], len_last_line - 1);
