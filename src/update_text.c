@@ -39,7 +39,7 @@ static void remove_line_at(context_t *ctx, int len_last_line)
     new_text_file = malloc(sizeof(char *) * (my_arraylen(ctx->text_file) + 1));
     new = malloc(sizeof(char) * (len + 2));
     my_init_nstr(new, '\0', len + 2);
-    my_strncat(new, ctx->text_file[ctx->cursor_y - 1], len_last_line - 1);
+    my_strncat(new, ctx->text_file[ctx->cursor_y - 1], len_last_line - 2);
     my_strcat(new, ctx->text_file[ctx->cursor_y]);
     free(ctx->text_file[ctx->cursor_y - 1]);
     free(ctx->text_file[ctx->cursor_y]);
