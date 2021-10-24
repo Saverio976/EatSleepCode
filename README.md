@@ -10,6 +10,14 @@ To help better understanding the CSFML lib.
 clone this repo
 and do `make`
 
+# Warning
+
+***DO NOT EDIT IMPORTANT TEXT WITH THIS FOR NOW. IT IS NOT SAFE :eyes:***
+
+# Shortcut
+
+- Esc   : save the swap file to the true file
+
 # Use case
 
 if you want to **read** a **little portion of text**.
