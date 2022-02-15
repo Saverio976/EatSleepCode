@@ -23,12 +23,12 @@ static char set_csfml_sprite(window_t *window)
         my_printf("[EatSleeĈode][error] sfSprite_create error");
         return (0);
     }
+    sfSprite_setTexture(window->bg_sprite, window->bg_texture, sfTrue);
     return (1);
 }
 
 static char set_csfml_text(window_t *window)
 {
-    sfSprite_setTexture(window->bg_sprite, window->bg_texture, sfTrue);
     window->font = sfFont_createFromFile(FONT_PATH);
     if (window->font == NULL) {
         my_printf("[EatSleepCode][error] can't load %s\n", FONT_PATH);

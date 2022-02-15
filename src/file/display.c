@@ -14,6 +14,7 @@ static void print_line(char const *str, int y, sfText *text,
 {
     sfVector2f pos = {10, 10 + 20 * y};
 
+    sfText_setCharacterSize(text, 16);
     sfText_setPosition(text, pos);
     sfText_setString(text, str);
     sfText_setFillColor(text, sfWhite);
@@ -31,7 +32,7 @@ int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text)
     }
     cursor = file->line_top;
     do {
-        if ((unsigned int) my_strlen(cursor->data) < file->x) {
+        if ((unsigned int) my_strlen(cursor->data) > file->x) {
             tmp = (char *) cursor->data + file->x;
             print_line(tmp, index_y, text, win);
         }

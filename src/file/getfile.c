@@ -46,10 +46,12 @@ static list_t *get_filelines(char const *pathfile)
         return (NULL);
     }
     content = fs_get_content(pathfile);
-    for (int i = 0; i < size; i++) {
+    my_putstr(content);
+    for (int i = 0; content != NULL && i < size; i++) {
         if (content[i] == '\n') {
-            buf = my_strdcut(content - (i - lastnewline), i - lastnewline);
-            lastnewline = i;
+            buf = my_strdcut(content + lastnewline, i - lastnewline);
+            my_putstr(buf);
+            lastnewline = i + 1;
             lines = list_t_add_data(lines, buf, free);
         }
     }

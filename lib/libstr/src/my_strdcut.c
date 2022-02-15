@@ -12,12 +12,8 @@
 char *my_strdcut(char const *src, int n)
 {
     char *new = NULL;
-    int size = -1;
+    int size = n;
 
-    size = MIN(my_strlen(src), n);
-    if (size < 0) {
-        return (NULL);
-    }
     new = malloc(sizeof(char) * (size + 1));
     if (new == NULL) {
         return (NULL);
