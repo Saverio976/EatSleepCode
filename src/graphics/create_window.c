@@ -58,6 +58,7 @@ static char set_csfml(window_t *window, int width, int heigth, char const *str)
     if (set_csfml_sprite(window) == 0) {
         return (0);
     }
+    sfRenderWindow_setKeyRepeatEnabled(window->win, sfFalse);
     return (1);
 }
 
@@ -65,7 +66,6 @@ static char set_file_edit(window_t *window, char const *str)
 {
     file_edit_t *file = NULL;
 
-    my_printf("ici\n");
     file = getfile(str);
     if (file == NULL) {
         my_printf("[EatSleepCode][error] getfile error");
@@ -80,27 +80,19 @@ window_t *create_window(dico_t *args, int width, int heigth)
     char const *file_path = NULL;
     window_t *window = NULL;
 
-    my_printf("oooo\n");
-    if (args == NULL) {
-        my_printf("so bad\n");
-    }
     file_path = (args == NULL) ? NULL : dico_t_get_value(args, "file");
     if (file_path == NULL) {
         return (NULL);
     }
-    my_printf("kkkkk\n");
     window = malloc(sizeof(window_t));
     if (window == NULL) {
         return (NULL);
     }
-    my_printf("kklllll\n");
     if (set_csfml(window, width, heigth, file_path) == 0) {
         return (NULL);
     }
-    my_printf("mmmmmm\n");
     if (set_file_edit(window, file_path) == 0) {
         return (NULL);
     }
-    my_printf("qqqqqq\n");
     return (window);
 }

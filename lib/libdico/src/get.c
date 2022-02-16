@@ -18,19 +18,14 @@ dico_t *dico_t_get_elem(dico_t *dico, char const *key)
     if (dico == NULL) {
         return (NULL);
     }
-    cursor = dico->next;
-    while (cursor != NULL && is_found == 0 && cursor != dico) {
+    cursor = dico;
+    do {
         if (my_strcmp(cursor->key, key) == 0) {
             is_found = 1;
         }
         cursor_last = cursor;
         cursor = cursor->next;
-    }
-    if (is_found == 0 && dico != NULL &&
-            my_strcmp(dico->key, key) == 0) {
-        is_found = 1;
-        cursor_last = dico;
-    }
+    } while (cursor != NULL && is_found == 0 && cursor != dico);
     return ((is_found) ? cursor_last : NULL);
 }
 

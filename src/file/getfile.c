@@ -46,11 +46,9 @@ static list_t *get_filelines(char const *pathfile)
         return (NULL);
     }
     content = fs_get_content(pathfile);
-    my_putstr(content);
     for (int i = 0; content != NULL && i < size; i++) {
         if (content[i] == '\n') {
             buf = my_strdcut(content + lastnewline, i - lastnewline);
-            my_putstr(buf);
             lastnewline = i + 1;
             lines = list_t_add_data(lines, buf, free);
         }
@@ -69,6 +67,8 @@ static file_edit_t *fill_filedit(file_edit_t *file, char const *pathfile,
     file->line_top = file->list_line;
     file->x = 0;
     file->y = 0;
+    file->nb_lines = list_t_len(file->list_line);
+    file->charactr_size = 20;
     return (file);
 }
 
@@ -77,12 +77,10 @@ file_edit_t *getfile(char const *pathfile)
     file_edit_t *file = NULL;
     char *filename = NULL;
 
-    my_printf("pathfile : %s\n", pathfile);
     if (pathfile == NULL) {
         return (NULL);
     }
     filename = get_only_file(pathfile);
-    my_printf("file : %s\n", filename);
     if (filename == NULL) {
         return (NULL);
     }

@@ -20,7 +20,6 @@ static int my_coppy(char dest[255], char const *src)
         dest[i] = src[i];
     }
     dest[i] = '\0';
-    my_printf("file : %s\n", dest);
     return (1);
 }
 

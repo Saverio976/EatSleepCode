@@ -17,6 +17,8 @@ struct list_t {
     void (*destroy)(void *data);
 };
 
+int list_t_len(list_t *list);
+
 list_t *list_t_create(void *data, void (*destroy)(void *data));
 
 list_t *list_t_add_data(list_t *list, void *data, void (*destroy)(void *data));

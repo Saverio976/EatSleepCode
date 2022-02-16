@@ -24,11 +24,13 @@ struct file_edit_t {
     char filename[255];
     char *pathfile;
     int nb_lines;
+    int charactr_size;
     list_t *list_line;
     list_t *curr_line;
     list_t *line_top;
-    unsigned int x;
-    unsigned int y;
+    list_t *line_bot;
+    int x;
+    int y;
 };
 
 struct window_t {
@@ -46,7 +48,7 @@ dico_t *argparse(int ac, char **av);
 
 file_edit_t *getfile(char const *pathfile);
 
-int handle_event(sfRenderWindow *window);
+int handle_event(sfRenderWindow *window, file_edit_t *file);
 
 int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text);
 

@@ -31,7 +31,8 @@ SRCDIR		=	src/
 SRC		:=	src/add.c		\
 			src/destroy.c	\
 			src/pop.c		\
-			src/rem.c
+			src/rem.c		\
+			src/len.c
 
 OBJ		=	$(SRC:%.c=%.o)
 # ----------------------------------------------------------------------------

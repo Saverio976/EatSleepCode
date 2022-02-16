@@ -18,13 +18,11 @@ int main(int ac, char **av)
     if (args == NULL) {
         return (84);
     }
-    my_printf("okici\n");
     window = create_window(args, 1920, 1080);
     if (window == NULL) {
         dico_t_destroy(args);
         return (84);
     }
-    my_printf("iciok\n");
     window_loop(window, args);
     destroy_window(window);
     return (0);
