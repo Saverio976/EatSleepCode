@@ -25,7 +25,7 @@ int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text)
 {
     int index_y = 0;
     list_t *cursor = NULL;
-    sfVector2f pos = {10, 10};
+    sfVector2f pos = {OFFSET_CODE_X, OFFSET_CODE_Y};
 
     if (file->line_top == NULL) {
         return (0);
@@ -33,14 +33,14 @@ int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text)
     sfText_setCharacterSize(text, file->charactr_size);
     cursor = file->line_top;
     do {
-        if (my_strlen(cursor->data) > file->x) {
-            print_line((char *) cursor->data + file->x, pos, text, win);
+        if (my_strlen(cursor->data) > 0) {
+            print_line((char *) cursor->data + 0, pos, text, win);
         }
         pos.y += file->charactr_size;
         index_y++;
         cursor = cursor->next;
     } while (cursor != file->list_line &&
             sfRenderWindow_getSize(win).y > pos.y);
-    file->line_bot = cursor->last;
+    file->line_bot = cursor->last->last;
     return (index_y);
 }

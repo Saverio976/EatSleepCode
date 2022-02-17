@@ -58,7 +58,6 @@ static char set_csfml(window_t *window, int width, int heigth, char const *str)
     if (set_csfml_sprite(window) == 0) {
         return (0);
     }
-    sfRenderWindow_setKeyRepeatEnabled(window->win, sfFalse);
     return (1);
 }
 

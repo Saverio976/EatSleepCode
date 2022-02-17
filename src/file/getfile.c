@@ -65,8 +65,9 @@ static file_edit_t *fill_filedit(file_edit_t *file, char const *pathfile,
     file->list_line = get_filelines(pathfile);
     file->curr_line = file->list_line;
     file->line_top = file->list_line;
-    file->x = 0;
     file->y = 0;
+    file->global_x = 0;
+    file->global_y = 0;
     file->nb_lines = list_t_len(file->list_line);
     file->charactr_size = 20;
     return (file);

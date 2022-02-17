@@ -12,6 +12,9 @@
     #include "my_list.h"
     #include "my_dico.h"
 
+static const int OFFSET_CODE_X = 10;
+static const int OFFSET_CODE_Y = 10;
+
 static const char BACKGROUND_PATH[] = "./assets/images/black_bg.png";
 static const char FONT_PATH[] = "./assets/fonts/menlo.ttf";
 
@@ -29,8 +32,9 @@ struct file_edit_t {
     list_t *curr_line;
     list_t *line_top;
     list_t *line_bot;
-    int x;
     int y;
+    int global_x;
+    int global_y;
 };
 
 struct window_t {
