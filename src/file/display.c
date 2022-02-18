@@ -40,7 +40,7 @@ int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text)
         index_y++;
         cursor = cursor->next;
     } while (cursor != file->list_line &&
-            sfRenderWindow_getSize(win).y > pos.y);
-    file->line_bot = cursor->last->last;
+            sfRenderWindow_getSize(win).y > pos.y + file->charactr_size * 2);
+    file->line_bot = cursor;
     return (index_y);
 }

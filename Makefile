@@ -36,6 +36,7 @@ SRC			:=	src/main.c						\
 				src/file/destroy.c				\
 				src/file/display.c				\
 				src/file/getfile.c				\
+				src/file/motion.c				\
 				src/graphics/create_window.c	\
 				src/graphics/destroy_window.c	\
 				src/graphics/esp.c				\

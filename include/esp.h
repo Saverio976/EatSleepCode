@@ -64,4 +64,9 @@ window_t *create_window(dico_t *args, int width, int heigth);
 
 int window_loop(window_t *window, __attribute__((unused)) dico_t *args);
 
+int move_cursor_up(sfEvent *event, file_edit_t *file);
+int move_cursor_down(sfEvent *event, file_edit_t *file);
+int move_cursor_right(sfEvent *event, file_edit_t *file);
+int move_cursor_left(sfEvent *event, file_edit_t *file);
+
 #endif
