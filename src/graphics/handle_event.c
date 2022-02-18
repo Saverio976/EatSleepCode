@@ -25,7 +25,8 @@ static int (*FCNTS[])(sfEvent *, file_edit_t *) = {
     NULL
 };
 
-int handle_event(sfRenderWindow *window, file_edit_t *file)
+int handle_event(sfRenderWindow *window, file_edit_t *file,
+        mode_context_t *mode)
 {
     sfEvent event;
 
@@ -33,6 +34,9 @@ int handle_event(sfRenderWindow *window, file_edit_t *file)
             sfRenderWindow_pollEvent(window, &event)) {
         for (int i = 0; KEYS[i] != sfKeyUnknown; i++) {
             FCNTS[i](&event, file);
+        }
+        if (event.type == sfEvtTextEntered) {
+
         }
         if (event.type == sfEvtClosed) {
             sfRenderWindow_close(window);

@@ -61,16 +61,18 @@ static char set_csfml(window_t *window, int width, int heigth, char const *str)
     return (1);
 }
 
-static char set_file_edit(window_t *window, char const *str)
+static char set_file_edit_mode(window_t *window, char const *str)
 {
-    file_edit_t *file = NULL;
-
-    file = getfile(str);
-    if (file == NULL) {
+    window->curr_file = getfile(str);
+    if (window->curr_file == NULL) {
         my_printf("[EatSleepCode][error] getfile error");
         return (0);
     }
-    window->curr_file = file;
+    window->modes = mode_create();
+    if (window->curr_file == NULL) {
+        my_printf("[EatSleepCode][error] mode create error");
+        return (0);
+    }
     return (1);
 }
 
@@ -90,7 +92,7 @@ window_t *create_window(dico_t *args, int width, int heigth)
     if (set_csfml(window, width, heigth, file_path) == 0) {
         return (NULL);
     }
-    if (set_file_edit(window, file_path) == 0) {
+    if (set_file_edit_mode(window, file_path) == 0) {
         return (NULL);
     }
     return (window);

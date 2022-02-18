@@ -41,7 +41,7 @@ int window_loop(window_t *window, __attribute__((unused)) dico_t *args)
         file_edit_t_display(window->curr_file, window->win, window->text);
         draw_cursor(window->win, window->curr_file, rect, window->text);
         sfRenderWindow_display(window->win);
-        ret_code = handle_event(window->win, window->curr_file);
+        ret_code = handle_event(window->win, window->curr_file, window->modes);
     }
     sfRectangleShape_destroy(rect);
     return (ret_code);

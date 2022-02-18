@@ -12,6 +12,8 @@
     #include "my_list.h"
     #include "my_dico.h"
 
+    #define BUFF_INPUTS_SIZE 255
+
 static const int OFFSET_CODE_X = 10;
 static const int OFFSET_CODE_Y = 10;
 
@@ -21,6 +23,7 @@ static const char FONT_PATH[] = "./assets/fonts/menlo.ttf";
 // ----------------------------------------------------------------------------
 
 typedef struct file_edit_t file_edit_t;
+typedef struct mode_context_t mode_context_t;
 typedef struct window_t window_t;
 
 struct file_edit_t {
@@ -37,6 +40,15 @@ struct file_edit_t {
     int global_y;
 };
 
+struct mode_context_t {
+    enum mode_type {
+        NORMAL,
+        COMMAND,
+        INSERT
+    } type;
+    char inputs[BUFF_INPUTS_SIZE];
+};
+
 struct window_t {
     sfRenderWindow *win;
     sfTexture *bg_texture;
@@ -44,6 +56,7 @@ struct window_t {
     sfFont *font;
     sfText *text;
     file_edit_t *curr_file;
+    mode_context_t *modes;
 };
 
 // ---------------------------------------------------------------------------
@@ -52,7 +65,8 @@ dico_t *argparse(int ac, char **av);
 
 file_edit_t *getfile(char const *pathfile);
 
-int handle_event(sfRenderWindow *window, file_edit_t *file);
+int handle_event(sfRenderWindow *window, file_edit_t *file,
+        mode_context_t *mode);
 
 int file_edit_t_display(file_edit_t *file, sfRenderWindow *win, sfText *text);
 
@@ -68,5 +82,7 @@ int move_cursor_up(sfEvent *event, file_edit_t *file);
 int move_cursor_down(sfEvent *event, file_edit_t *file);
 int move_cursor_right(sfEvent *event, file_edit_t *file);
 int move_cursor_left(sfEvent *event, file_edit_t *file);
+
+mode_context_t *mode_create(void);
 
 #endif
